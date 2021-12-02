@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
