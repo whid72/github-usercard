@@ -7,7 +7,9 @@ import axios from 'axios';
 */
 axios.get(' https://api.github.com/users/whid72')
   .then(res => {
-    console.log(componentMaker(res))
+    let card = componentMaker(res)
+    const cards = document.querySelector('.cards');
+    cards.appendChild(card)
   })
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -33,8 +35,15 @@ axios.get(' https://api.github.com/users/whid72')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
-
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+followersArray.forEach(item => {
+  axios.get(`https://api.github.com/users/${item}`)
+  .then(res => {
+    let card = componentMaker(res)
+    const cards = document.querySelector('.cards');
+    cards.appendChild(card)
+  })
+})
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
@@ -55,7 +64,7 @@ const followersArray = [];
     </div>
 */
 
-function componentMaker(obj){
+function componentMaker(obj) {
   //declaration
   const card = document.createElement('div');
   const img = document.createElement('img');
